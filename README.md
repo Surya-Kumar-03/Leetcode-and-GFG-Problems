@@ -1,2 +1,1 @@
-# Leetcode-and-GFG-Problems
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+A Repo to store all my code submissions on Leetcode and GFG
