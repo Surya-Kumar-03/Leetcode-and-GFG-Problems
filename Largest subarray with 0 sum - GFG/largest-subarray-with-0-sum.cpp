@@ -15,6 +15,7 @@ class Solution{
         // Your code here
         unordered_map<int, int> ourMap; //stores sumtill that element and start index
         ourMap[0] = -1; // to handle the case where the whole array becomes zero
+        // indicates sum was zero for the subarray in the start
         // testcase -> -1 1 -1 1
         int sum = 0;
         int ans = 0;
