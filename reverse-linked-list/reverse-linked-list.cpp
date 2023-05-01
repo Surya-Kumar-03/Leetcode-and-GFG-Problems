@@ -10,17 +10,41 @@
  */
 class Solution {
 public:
+    // Recursive
     ListNode* reverseList(ListNode* head) {
-        if(head == NULL || head->next == NULL) return head;
-        ListNode* prevNext = head -> next;
-        ListNode* lastNode = head;
-        lastNode -> next = NULL;
-        while(prevNext != NULL) {
-            ListNode* temp = prevNext -> next;
-            prevNext -> next = lastNode;
-            lastNode = prevNext;
-            prevNext = temp;
-        }
-        return lastNode;
+    if(head == NULL || head->next == NULL)
+        return head;
+        ListNode* newHead = reverseList(head->next);
+        head->next->next = head;
+        head->next = NULL;
+        return newHead;
     }
+    
+    // Iterative
+    // ListNode* reverseList(ListNode* head) {
+    //     ListNode* newHead = NULL;
+    //     while(head != NULL)
+    //     {
+    //         ListNode* next = head->next;
+    //         head->next = newHead;
+    //         newHead = head;
+    //         head = next;
+    //     }
+    //     return newHead;
+    // }
+
+    // my practise
+    // ListNode* reverseList(ListNode* head) {
+    //     if(head == NULL || head->next == NULL) return head;
+    //     ListNode* prevNext = head -> next;
+    //     ListNode* lastNode = head;
+    //     lastNode -> next = NULL;
+    //     while(prevNext != NULL) {
+    //         ListNode* temp = prevNext -> next;
+    //         prevNext -> next = lastNode;
+    //         lastNode = prevNext;
+    //         prevNext = temp;
+    //     }
+    //     return lastNode;
+    // }
 };
