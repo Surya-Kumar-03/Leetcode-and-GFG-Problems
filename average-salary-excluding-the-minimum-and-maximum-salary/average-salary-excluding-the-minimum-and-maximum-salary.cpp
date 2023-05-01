@@ -6,7 +6,6 @@ public:
         int sum = salary[0];
         for(int i = 1; i < salary.size(); i++){
             sum += salary[i];
-            cout << sum << ' '<< minEle <<' ' << maxEle << endl;
             if(salary[i] < minEle){
                 minEle = salary[i];
             }
