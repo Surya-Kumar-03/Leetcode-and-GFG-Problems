@@ -10,15 +10,25 @@
  */
 class Solution {
 public:
-    // Recursive
-    ListNode* reverseList(ListNode* head) {
-    if(head == NULL || head->next == NULL)
-        return head;
+    // Recursive Practise
+    ListNode* reverseList(ListNode* head){
+        if(!head || !head->next) return head;
         ListNode* newHead = reverseList(head->next);
-        head->next->next = head;
-        head->next = NULL;
+        head->next->next = head; //the last node in the reversed guy to point to our node
+        head->next = NULL;  // our node next  is null now
         return newHead;
     }
+
+
+    // Recursive
+    // ListNode* reverseList(ListNode* head) {
+    // if(head == NULL || head->next == NULL)
+    //     return head;
+    //     ListNode* newHead = reverseList(head->next);
+    //     head->next->next = head;
+    //     head->next = NULL;
+    //     return newHead;
+    // }
     
     // Iterative
     // ListNode* reverseList(ListNode* head) {
