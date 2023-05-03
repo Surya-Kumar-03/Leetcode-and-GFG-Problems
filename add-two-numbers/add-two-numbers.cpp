@@ -10,6 +10,7 @@
  */
 class Solution {
 public:
+    // O(max(N, M)) O(max(N, M))
     ListNode* ourAdder(ListNode* l1, ListNode* l2, int& carry){
         if(!l1 && !l2 && carry == 0) {
             return NULL;
