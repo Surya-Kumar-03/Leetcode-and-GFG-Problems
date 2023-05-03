@@ -20,19 +20,16 @@ public:
         } else if(!l2 && carry == 0) {
             return l1;
         } else {
-            int firstVal = 0, secondVal = 0;
+            int sum = 0;
             if(l1){
-                firstVal = l1->val;
+                sum += l1->val;
             }
             if(l2){
-                secondVal = l2->val;
+                sum += l2->val;
             }
-            int val = firstVal + secondVal + carry;
-            if(val > 9) {
-                carry = 1;
-                val = val % 10;
-            } else carry = 0;
-            ListNode* newNode = new ListNode(val);
+            sum += carry;
+            carry = sum / 10; //carry will be 1 if greater than 9
+            ListNode* newNode = new ListNode(sum % 10);
             if(l1 && l2) {
                 newNode->next = ourAdder(l1-> next, l2-> next, carry);
             } else if(l1){
