@@ -5,9 +5,7 @@ public:
        int n1 = nums1.size();
        int n2 = nums2.size();
        for(int i = 0; i < n1; i++){
-           if(ourMap.find(nums1[i]) == ourMap.end()){
-                ourMap[nums1[i]] = false;
-           }
+            ourMap[nums1[i]] = false;
        }
 
        vector<int> ans2;
