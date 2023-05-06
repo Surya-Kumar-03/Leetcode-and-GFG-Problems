@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // PR 
     int mod = 1e9 + 7;
     
     long long power(long long base, int exponent) {
