@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int maxUncrossedLines(vector<int>& A, vector<int>& B) {
+        int maxUncrossedLines(vector<int>& A, vector<int>& B) {
         int m = A.size(), n = B.size(), dp[m+1][n+1];
         memset(dp, 0, sizeof(dp));
         for (int i = 1; i <= m; ++i)
