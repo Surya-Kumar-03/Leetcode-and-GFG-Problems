@@ -9,11 +9,15 @@ class Solution
             {
                 ourMap[nums[i]]++;
             }
-            priority_queue<pair<int, int>> pq;
+           	// debug(ourMap);
+            priority_queue<pair<int, int>, vector< pair<int, int>>, greater<pair<int, int>>> pq;
             for (auto ele: ourMap)
             {
                 pq.push({ ele.second,
                     ele.first });
+                if (pq.size() > k)
+                    pq.pop();
+               	// debug(pq);
             }
             for (int i = 0; i < k; i++)
             {
@@ -21,6 +25,7 @@ class Solution
                 ans.push_back(topEle);
                 pq.pop();
             }
+           	// debug(ans);
             return ans;
         }
 };
