@@ -26,7 +26,7 @@ public:
                 }
                 else node = node->right;
             }
-            if(val < node->val) //go left
+            else //go left
             {
                 if(node->left == NULL)
                 {
