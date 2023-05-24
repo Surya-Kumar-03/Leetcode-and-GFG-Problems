@@ -16,23 +16,19 @@ class Solution
     int ourMaxPath(TreeNode *root)
     {
         if (root == NULL) return 0;
-        int left = ourMaxPath(root->left); //-2
-        int right = ourMaxPath(root->right);  //3
-        int passer = left + root->val;  //-1
-        cout << "left: " << left << " right: " << right << " passer: " << passer;
+        int left = ourMaxPath(root->left);
+        int right = ourMaxPath(root->right);  
+        int passer = left + root->val;  
         if((left + right + root->val) > passer) {
-            passer = left + right + root->val; //2
-            cout << " passer1: " << passer << " ";
+            passer = left + right + root->val; 
         } 
         if (right + root -> val > passer) {
-            passer = right + root -> val; //4
-            cout << " passer2: " << passer << " ";
+            passer = right + root -> val;
         }
         if(root->val > passer) {
             passer = root->val;
         }
         maxSum = max(maxSum, passer);
-        cout << " I am on " << root->val << " : " << passer << " Max Sum: " << maxSum << endl; 
         return max(left + root->val, max(right + root -> val, root->val));
     }
 
