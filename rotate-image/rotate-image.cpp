@@ -8,7 +8,6 @@ class Solution
         {
             for (int j = 0; j < i; j++)
             {
-                cout << matrix[i][j] << " : " << matrix[j][i] << endl;
                 swap(matrix[i][j], matrix[j][i]);
             }
         }
