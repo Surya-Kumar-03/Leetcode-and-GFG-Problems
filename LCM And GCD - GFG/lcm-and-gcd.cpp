@@ -8,16 +8,14 @@ class Solution {
     vector<long long> lcmAndGcd(long long A , long long B) {
         // code here
         long long a = A, b = B;
-        while (b != 0) {
-            long long temp = b;
-            b = a % b;
-            a = temp;
+        long long gcd = 1;
+        while(a > 0 && b > 0) {
+            if(a > b) a = a % b;
+            else b = b % a;
         }
-        long long gcd = a;
-        
-        // Calculate LCM
-        long long lcm = (A * B) / gcd;
-        
+        if(a == 0) gcd = b;
+        else gcd = a;
+        long long lcm = (A * B)/gcd;
         return {lcm, gcd};
     }
     
