@@ -13,17 +13,16 @@ public:
         // code here
         int i = 0;
         while(true) {
-            if(arr[i] == 0) break;
+            if(arr[i] == 1) break;
             i++;
         }
         
         for(int j = i + 1; j < n; j++) {
-            if(arr[j] == 1){
+            if(arr[j] == 0){
                 swap(arr[j], arr[i]);
                 i++;
             } 
         }
-        reverse(arr, arr+n);
     }
 };
 
