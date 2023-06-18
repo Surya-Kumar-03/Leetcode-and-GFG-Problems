@@ -1,32 +1,55 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        // Didnt understand Properly
-        vector<int> map(128, 0);
-        for (char c : t) {
-            map[c]++;
+        int i=0,j=0,MinL=INT_MAX,start=0;
+        unordered_map<char,int> mp;
+        for(auto it:t)
+            mp[it]++;
+        int count=mp.size();
+        
+        if(mp.find(s[j])!=mp.end()){
+            mp[s[j]]--;
+            if(mp[s[j]]==0)
+                count--;
         }
         
-        int start = 0, end = 0, minStart = 0, minLen = INT_MAX, counter = t.length();
-        while (end < s.length()) {
-            const char c1 = s[end];
-            if (map[c1] > 0)
-                counter--;
-            map[c1]--;
-            end++;
-            while (counter == 0) {
-                if (minLen > end - start) {
-                    minLen = end - start;
-                    minStart = start;
+        while(j<s.length()){
+            if(count>0){
+                j++;
+                if(mp.find(s[j])!=mp.end()){
+                    mp[s[j]]--;
+                    if(mp[s[j]]==0)
+                    count--;
                 }
-                const char c2 = s[start];
-                map[c2]++;
-                if (map[c2] > 0)
-                    counter++;
-                start++;
+            }
+            else if(count==0){
+                // MinL=min(MinL,j-i+1);
+                if(MinL>j-i+1){
+                    MinL=j-i+1;
+                    start=i;
+                }
+                while(count==0){
+                    if(mp.find(s[i])!=mp.end()){
+                        mp[s[i]]++;
+                        if(mp[s[i]]==1){
+                            count++;
+                            // MinL=min(MinL,j-i+1);
+                             if(MinL>j-i+1){
+                                MinL=j-i+1;
+                                start=i;
+                            } 
+                        }
+                        i++;
+                    }
+                    else
+                        i++;
+                }
             }
         }
-
-        return minLen == INT_MAX ? "" : s.substr(minStart, minLen);
+        string str="";
+        if(MinL!=INT_MAX)
+            return str.append(s.substr(start,MinL));
+        else
+            return str;
     }
 };
