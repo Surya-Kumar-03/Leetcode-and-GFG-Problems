@@ -19,7 +19,7 @@ public:
                 if(mp.find(s[j])!=mp.end()){
                     mp[s[j]]--;
                     if(mp[s[j]]==0)
-                    count--;
+                        count--;
                 }
             }
             else if(count==0){
