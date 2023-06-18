@@ -1,55 +1,57 @@
-class Solution {
+class Solution
+{
 public:
     string minWindow(string s, string t) {
-        int i=0,j=0,MinL=INT_MAX,start=0;
-        unordered_map<char,int> mp;
-        for(auto it:t)
-            mp[it]++;
-        int count=mp.size();
-        
-        if(mp.find(s[j])!=mp.end()){
-            mp[s[j]]--;
-            if(mp[s[j]]==0)
-                count--;
+        int left = 0;
+        int right = 0;
+        int minLength = INT_MAX;
+        int start = 0;
+        unordered_map<char,int> targetCharCount;
+        for(auto it: t)
+            targetCharCount[it]++;
+        int missingChars = targetCharCount.size();
+
+        if(targetCharCount.find(s[right]) != targetCharCount.end()){
+            targetCharCount[s[right]]--;
+            if(targetCharCount[s[right]] == 0)
+                missingChars--;
         }
-        
-        while(j<s.length()){
-            if(count>0){
-                j++;
-                if(mp.find(s[j])!=mp.end()){
-                    mp[s[j]]--;
-                    if(mp[s[j]]==0)
-                        count--;
+
+        while(right < s.length()){
+            if(missingChars > 0){
+                right++;
+                if(targetCharCount.find(s[right]) != targetCharCount.end()){
+                    targetCharCount[s[right]]--;
+                    if(targetCharCount[s[right]] == 0)
+                        missingChars--;
                 }
             }
-            else if(count==0){
-                // MinL=min(MinL,j-i+1);
-                if(MinL>j-i+1){
-                    MinL=j-i+1;
-                    start=i;
+            else if(missingChars == 0){
+                if(right - left + 1 < minLength){
+                    minLength = right - left + 1;
+                    start = left;
                 }
-                while(count==0){
-                    if(mp.find(s[i])!=mp.end()){
-                        mp[s[i]]++;
-                        if(mp[s[i]]==1){
-                            count++;
-                            // MinL=min(MinL,j-i+1);
-                             if(MinL>j-i+1){
-                                MinL=j-i+1;
-                                start=i;
-                            } 
+                while(missingChars == 0){
+                    if(targetCharCount.find(s[left]) != targetCharCount.end()){
+                        targetCharCount[s[left]]++;
+                        if(targetCharCount[s[left]] == 1){
+                            missingChars++;
+                            if(minLength > right - left + 1){
+                                minLength = right - left + 1;
+                                start = left;
+                            }
                         }
-                        i++;
+                        left++;
                     }
                     else
-                        i++;
+                        left++;
                 }
             }
         }
-        string str="";
-        if(MinL!=INT_MAX)
-            return str.append(s.substr(start,MinL));
+        string result = "";
+        if(minLength != INT_MAX)
+            return result.append(s.substr(start, minLength));
         else
-            return str;
+            return result;
     }
 };
