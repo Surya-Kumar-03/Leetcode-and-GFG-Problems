@@ -11,7 +11,8 @@ using namespace std;
 
 class Solution{
 public:
-    int pageFaults(int n, int c, int pages[]) {
+    int pageFaults(int n, int c, int pages[]){
+        // code here
         map<int, int> pageMap;
         int pageFaultCount = 0;
     
