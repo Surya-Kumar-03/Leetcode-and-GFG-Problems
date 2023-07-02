@@ -22,18 +22,33 @@ public:
 	   // vector<int> memo(n, -1);
 	   // return maxSum(arr, n, 0, memo);
 	   
-	   vector<int> dp(n, 0);
+	   //vector<int> dp(n, 0);
+	   //for(int j = n - 1; j >= 0; j--) {
+	   //    int pick = arr[j], notPick = INT_MIN;
+	   //    if(j + 2 < n) {
+	   //        pick += dp[j + 2];
+	   //    }
+	   //    if(j + 1 < n) {
+	   //        notPick = dp[j + 1];
+	   //    }
+	   //    dp[j] = max(pick, notPick);
+	   //}
+	   //return dp[0];
+	   
+	   int prev = 0, prevLast = 0, cur;
 	   for(int j = n - 1; j >= 0; j--) {
 	       int pick = arr[j], notPick = INT_MIN;
 	       if(j + 2 < n) {
-	           pick += dp[j + 2];
+	           pick += prevLast;
 	       }
 	       if(j + 1 < n) {
-	           notPick = dp[j + 1];
+	           notPick = prev;
 	       }
-	       dp[j] = max(pick, notPick);
+	       cur = max(pick, notPick);
+	       prevLast = prev;
+	       prev = cur;
 	   }
-	   return dp[0];
+	   return cur;
 	}
 };
 
