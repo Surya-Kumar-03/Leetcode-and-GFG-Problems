@@ -21,16 +21,31 @@ class Solution {
         // Code here
         // vector<int> memo(n, -1);
         // return ourReach(height, n, 0, memo);
-        vector<int> dp(n);
-        dp[n - 1] = 0;
+        
+        // vector<int> dp(n);
+        // dp[n - 1] = 0; //base case
+        // for(int j = n - 2; j >= 0; j--) {
+        //     int oneJump = INT_MAX;
+        //     int twoJump = INT_MAX;
+        //     if(j + 1 < n) oneJump = dp[j + 1] + abs(height[j + 1] - height[j]);
+        //     if(j + 2 < n) twoJump = dp[j + 2] + abs(height[j + 2] - height[j]);
+        //     dp[j] = min(oneJump, twoJump);
+        // }
+        // return dp[0];
+        
+        int prev = 0;
+        int prevLast = 0;
+        int cur;
         for(int j = n - 2; j >= 0; j--) {
             int oneJump = INT_MAX;
             int twoJump = INT_MAX;
-            if(j + 1 < n) oneJump = dp[j + 1] + abs(height[j + 1] - height[j]);
-            if(j + 2 < n) twoJump = dp[j + 2] + abs(height[j + 2] - height[j]);
-            dp[j] = min(oneJump, twoJump);
+            if(j + 1 < n) oneJump = prev + abs(height[j + 1] - height[j]);
+            if(j + 2 < n) twoJump = prevLast + abs(height[j + 2] - height[j]);
+            cur = min(oneJump, twoJump);
+            prevLast = prev;
+            prev = cur;
         }
-        return dp[0];
+        return cur;
     }
 };
 
