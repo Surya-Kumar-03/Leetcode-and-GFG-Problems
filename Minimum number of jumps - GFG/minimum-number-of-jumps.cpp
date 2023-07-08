@@ -10,15 +10,19 @@ class Solution{
   public:
     int minJumps(int arr[], int n){
         // Your code here
-        int curJum = 0, maxJum = 0;
-        int jumps = 0;
-        for(int i = 0; i < n - 1; i++) {
-            maxJum = max(maxJum, i + arr[i]);
-            if(curJum == i) {
-                if(maxJum <= i) return -1;
-                curJum = maxJum;
-                jumps++;
-            }
+        if(arr[0] == 0) return -1;
+        int curJump = arr[0];
+        int maxJump = arr[0];
+        int jumps = 1;
+        for(int i = 1; i < n - 1; i++) {
+            maxJump = max(maxJump, arr[i] + i);
+            if(curJump == i) {
+                if(maxJump == i) return -1;
+                else {
+                    curJump = maxJump;
+                    jumps++;
+                } 
+            } 
         }
         return jumps;
     }
