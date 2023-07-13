@@ -36,11 +36,9 @@ public:
         
         vector<vector<int>> dp(N, vector<int>(N, 0));
     
-        for (int len = 2; len < N; len++) {
-            for (int i = 1; i < N - len + 1; i++) {
-                int j = i + len - 1;
+        for (int i = N - 1; i > 0; i--) {
+            for (int j = i + 1; j < N; j++) {
                 dp[i][j] = INT_MAX;
-                
                 for (int k = i; k < j; k++) {
                     int curPartition = dp[i][k] + dp[k + 1][j] + 
                                 (arr[i - 1] * arr[k] * arr[j]);
