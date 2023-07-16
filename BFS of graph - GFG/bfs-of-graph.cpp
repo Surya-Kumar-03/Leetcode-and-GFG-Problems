@@ -7,6 +7,7 @@ class Solution {
   public:
     // Function to return Breadth First Traversal of given graph.
     vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+        // Code here
         vector<bool> visited(V, false);
         vector<int> ans;
         queue<int> pending;
@@ -14,56 +15,16 @@ class Solution {
         while(!pending.empty()) {
             int topEle = pending.front();
             pending.pop();
-            if(visited[topEle] == true) continue;
-            ans.push_back(topEle);
-            visited[topEle] = true;
-            for(int i = 0; i < adj[topEle].size(); i++) {
-                pending.push(adj[topEle][i]);
+            if(visited[topEle] == false) {
+                ans.push_back(topEle);
+                visited[topEle] = true;
+                int n = adj[topEle].size();
+                for(int i = 0; i < n; i++) {
+                    pending.push(adj[topEle][i]);
+                }
             }
         }
         return ans;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        // vector<bool> visited(V, false); //visited array with everything false
-        // vector<int> ans;
-        // queue<int> pending;
-        // pending.push(0);
-        // while(!pending.empty())
-        // {
-        //     int topEle = pending.front();
-        //     pending.pop();
-        //     if(visited[topEle] == true)
-        //         continue;
-        //     ans.push_back(topEle);
-        //     visited[topEle] = true;
-        //     for(int i = 0; i < adj[topEle].size(); i++)
-        //     {
-        //         pending.push(adj[topEle][i]);
-        //     }
-        // }
-        // return ans;
     }
 };
 
