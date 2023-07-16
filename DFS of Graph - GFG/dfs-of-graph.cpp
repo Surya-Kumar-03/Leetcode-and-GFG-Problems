@@ -5,22 +5,22 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    // Function to returhttps://media.geeksforgeeks.org/img-practice/graph-1659528381.pngn a list containing the DFS traversal of the graph.
-    vector<int> ans;
-    
-    void ourDfs(int cur, vector<int> adj[], vector<bool>& visited) {
-        visited[cur] = true;
+    // Function to return a list containing the DFS traversal of the graph.
+    void dfs(vector<bool>& visited, vector<int> adj[], vector<int>& ans, int cur) {
+        if(visited[cur] == true) return;
         ans.push_back(cur);
-        for(int i = 0; i < adj[cur].size(); i++) {
-            if(visited[adj[cur][i]] == true) continue;
-            ourDfs(adj[cur][i], adj, visited);
+        visited[cur] = true;
+        int n = adj[cur].size(); //indicates the neighbours of the current node
+        for(int i = 0; i < n; i++) {
+            dfs(visited, adj, ans, adj[cur][i]);
         }
     }
     
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         // Code here
         vector<bool> visited(V, false);
-        ourDfs(0, adj, visited);
+        vector<int> ans;
+        dfs(visited, adj, ans, 0);
         return ans;
     }
 };
