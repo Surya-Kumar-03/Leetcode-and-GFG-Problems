@@ -6,24 +6,52 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
-    bool bfs(int source, vector<int> adj[], vector<bool>& visited) {
-        queue<pair<int,int>> pending;
-        pending.push({source, -1});
-        while(!pending.empty()) {
-            auto topEle = pending.front();
-            pending.pop();
-            int node = topEle.first;
-            int parent = topEle.second;
-            visited[node] = true;
-            for(int i = 0; i < adj[node].size(); i++) {
-                int curNode = adj[node][i];
-                if(visited[curNode] == true && curNode != parent) {
-                    return true;
-                } else {
-                    if(!visited[curNode]) {
-                        pending.push({curNode, node});
-                    }
-                }
+    // bool bfs(int source, vector<int> adj[], vector<bool>& visited) {
+    //     queue<pair<int,int>> pending;
+    //     pending.push({source, -1});
+    //     while(!pending.empty()) {
+    //         auto topEle = pending.front();
+    //         pending.pop();
+    //         int node = topEle.first;
+    //         int parent = topEle.second;
+    //         visited[node] = true;
+    //         for(int i = 0; i < adj[node].size(); i++) {
+    //             int curNode = adj[node][i];
+    //             if(visited[curNode] == true && curNode != parent) {
+    //                 return true;
+    //             } else {
+    //                 if(!visited[curNode]) {
+    //                     pending.push({curNode, node});
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
+    
+    // bool isCycle(int V, vector<int> adj[]) {
+    //     // Code here
+    //     vector<bool> visited(V, false);
+    //     for(int i = 0; i < V; i++) {
+    //         if(visited[i] == false) {
+    //             if(bfs(i, adj, visited)) { //if cycle exists
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     return false; // no cycle exists
+    // }
+    
+    bool dfs(int node, vector<int> adj[], vector<bool> &visited, int parent)
+    {
+        visited[node] = true;
+        for(int i = 0; i < adj[node].size(); i++) {
+            int adjacentNode = adj[node][i];
+            if(visited[adjacentNode] && adjacentNode != parent) {
+                return true;
+            }
+            if(!visited[adjacentNode]) {
+                if(dfs(adjacentNode, adj, visited, node)) return true;
             }
         }
         return false;
@@ -31,13 +59,14 @@ class Solution {
     
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
+        // if it is visited and not it's parent then cycle
         vector<bool> visited(V, false);
         for(int i = 0; i < V; i++) {
-            if(visited[i] == false) {
-                if(bfs(i, adj, visited)) {
+            if(!visited[i]) { 
+                if(dfs(i, adj, visited, -1)) {
                     return true;
                 }
-            }
+            } 
         }
         return false;
     }
