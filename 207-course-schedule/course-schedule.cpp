@@ -38,7 +38,7 @@ public:
         // }
         // return true;
 
-        // Topological Sort
+        // Topological Sort Kahn's Algorithm
         int V = numCourses;
         vector<int> indegree(V, 0);
         for(int i = 0; i < V; i++) {
