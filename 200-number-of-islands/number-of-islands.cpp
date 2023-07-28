@@ -45,6 +45,8 @@ public:
         // }
         // return ans;
 
+        // Modifies the given grid
+        // if you don't want to modify use visited grid
         int m = grid.size();
         int n = grid[0].size();
         vector<int> offsets = {0, 1, 0, -1, 0}; //draw the offsets to understand
@@ -64,7 +66,7 @@ public:
                             int curI = topEle.first + offsets[k-1];
                             if(curI >= 0 && curI < m && curJ >= 0 && curJ < n && 
                                     grid[curI][curJ] == '1') {
-                                        
+
                                 grid[curI][curJ] = '0';
                                 pending.push({curI, curJ});
                             }
