@@ -1,14 +1,14 @@
 class TrieNode{
     public:
         char data;
-        vector<TrieNode*> children;
+        TrieNode** children = new TrieNode*[26];
         bool isTerminal;
 
         TrieNode(char data){
             this->data  = data;
             for(int i = 0; i < 26; i++)
             {
-                children.push_back(NULL);
+                children[i] = NULL;
             }
             isTerminal = false;
         }
@@ -21,7 +21,7 @@ public:
         root =  new TrieNode('\0');
     }
     
-    void ourInserter(TrieNode* root,string word)
+    void  ourInserter(TrieNode* root,string word)
     {
         if(word == "")
         {
