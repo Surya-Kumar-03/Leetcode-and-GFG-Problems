@@ -59,7 +59,6 @@ public:
                 // cur word is there in dict and the rest of the words are also there
                 if(dict.find(cur) != dict.end() && dp[j + 1]) {
                     dp[i] = true;
-                    break; // No need to check further, substring s[i:n) is breakable
                 }
             }
         }
