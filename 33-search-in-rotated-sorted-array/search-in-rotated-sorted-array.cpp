@@ -12,14 +12,14 @@ public:
             if(nums[low] <= nums[mid]) { 
                 //exists in this half
                 if(target >= nums[low] && target <= nums[mid]) {
-                    high = mid - 1;
+                    high = mid - 1; //search this half
                 } else {
                     low = mid + 1; //pass to other half
                 }
             } else {
                 //exists in this half
                 if(target <= nums[high] && target > nums[mid]) {
-                    low = mid + 1;
+                    low = mid + 1; //search this half
                 } else {
                     high = mid - 1; //pass to other half
                 }
