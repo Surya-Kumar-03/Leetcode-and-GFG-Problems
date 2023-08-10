@@ -11,7 +11,7 @@ public:
             // it is guaranteed that one side is sorted
             if(nums[low] <= nums[mid]) { 
                 //exists in this half
-                if(target >= nums[low] && target <= nums[mid]) {
+                if(target >= nums[low] && target < nums[mid]) {
                     high = mid - 1; //search this half
                 } else {
                     low = mid + 1; //pass to other half
