@@ -9,14 +9,14 @@ public:
             for(int j = 0; j < n; j++) {
                 if(dis[i][j] == 0) continue;
                 else {
-                    int mini = m * n;
+                    int mini = INT_MAX;
                     if(i > 0) {
                         mini = min(mini, dis[i - 1][j]);
                     }
                     if(j > 0) {
                         mini = min(mini, dis[i][j - 1]);
                     }
-                    dis[i][j] = 1 + mini;
+                    dis[i][j] = (mini == INT_MAX) ? INT_MAX : 1 + mini;
                 }
             }
         }
@@ -25,14 +25,15 @@ public:
             for(int j = n - 1; j >= 0; j--) {
                 if(dis[i][j] == 0) continue;
                 else {
-                    int curMini = m * n; 
+                    int mini = INT_MAX; 
                     if(i < m - 1) {
-                        curMini = min(curMini, dis[i + 1][j]);
+                        mini = min(mini, dis[i + 1][j]);
                     }
                     if(j < n - 1) {
-                        curMini = min(curMini, dis[i][j + 1]);
+                        mini = min(mini, dis[i][j + 1]);
                     }
-                    dis[i][j] = min(dis[i][j], curMini + 1);
+                    int curMini = (mini == INT_MAX) ? INT_MAX : 1 + mini;
+                    dis[i][j] = min(dis[i][j], curMini);
                 }
             }
         }
