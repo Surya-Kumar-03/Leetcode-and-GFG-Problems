@@ -4,6 +4,9 @@ public:
         int m = mat.size();
         int n = mat[0].size();
         
+        // other way in GFG of DP approach
+        // https://practice.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+        // can also be solved with BFS approach
         vector<vector<int>> dis(mat.begin(), mat.end());
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
