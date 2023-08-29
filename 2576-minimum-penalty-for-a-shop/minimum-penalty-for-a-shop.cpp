@@ -1,8 +1,10 @@
 class Solution {
 public:
+//best approach
     int bestClosingTime(string customers) {
         int max_score = 0, score = 0, best_hour = -1;
-        for(int i = 0; i < customers.size(); ++i) {
+        int n = customers.size();
+        for(int i = 0; i < n; ++i) {
             score += (customers[i] == 'Y') ? 1 : -1;
             if(score > max_score) {
                 max_score = score;
@@ -13,6 +15,7 @@ public:
     }
 };
 
+// my approach
 // class Solution {
 // public:
 //     int bestClosingTime(string customers) {
