@@ -9,7 +9,6 @@ public:
             yCounts[i] = yCount;
         }
 
-
         int nCount = 0;
         int minPenalty = yCounts[0];
         int minHour = 0;
