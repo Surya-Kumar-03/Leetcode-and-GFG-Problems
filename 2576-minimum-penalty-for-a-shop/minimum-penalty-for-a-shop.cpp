@@ -20,7 +20,7 @@ public:
                 minHour = i + 1;
             }
         }
-        if(nCount < minPenalty) {
+        if(nCount < minPenalty) { // for YYYY then close after last hour
             minHour = n;
         }
         return minHour;
