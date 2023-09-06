@@ -1,22 +1,19 @@
 class Solution {
 public:
-    string getNext(int k, vector<int> input) {
-        while (--k > 0) {
-            next_permutation(input.begin(), input.end());
+    string getPermutation(int n, int k) {
+        vector<int> num;
+        for(int i = 1; i <= n; i++) {
+            num.push_back(i);
         }
-        
+
+        for(int i = 0; i < k - 1; i++) {
+            next_permutation(num.begin(), num.end());
+        }
+
         string ans = "";
-        for (int i = 0; i < input.size(); i++) {
-            ans += to_string(input[i]);
+        for(auto ele : num) {
+            ans += to_string(ele);
         }
         return ans;
-    }
-
-    string getPermutation(int n, int k) {
-        vector<int> input;
-        for (int i = 1; i <= n; i++) {
-            input.push_back(i);
-        }
-        return getNext(k, input);
     }
 };
