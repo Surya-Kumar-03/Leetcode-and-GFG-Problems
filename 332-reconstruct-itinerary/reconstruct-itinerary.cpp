@@ -7,7 +7,7 @@ public:
 
         if (adj.find(source) != adj.end() && !adj[source].empty()) {
             multiset<string> destinations = adj[source];
-            for (const string& dest : destinations) {
+            for (string dest : destinations) {
                 ans.push_back(dest);
                 adj[source].erase(adj[source].find(dest));
 
@@ -24,7 +24,8 @@ public:
     }
 
     vector<string> findItinerary(vector<vector<string>>& tickets) {
-        int req = tickets.size() + 1;
+        int req = tickets.size() + 1; // we need to use up all tickets
+        // why 1 extra since we add jfk ourself!!
         unordered_map<string, multiset<string>> adj;
         
         for (const vector<string>& ticket : tickets) {
