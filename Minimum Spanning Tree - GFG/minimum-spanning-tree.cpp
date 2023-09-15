@@ -36,6 +36,7 @@ class Solution
         return mstSum;
     }
     
+    // see leetcode -> https://leetcode.com/problems/min-cost-to-connect-all-points/description/
     // https://www.youtube.com/watch?v=kaBX2s3pYO4
     // Kruskal's Algorithm
 //     int findParent(int node, vector<int>& parent) {
