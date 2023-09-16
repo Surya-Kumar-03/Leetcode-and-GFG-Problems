@@ -1,6 +1,8 @@
 class Solution {
 public:
     int minimumEffortPath(vector<vector<int>>& heights) {
+        // check in GFG for my solved code, below is also understandable
+        // https://practice.geeksforgeeks.org/problems/path-with-minimum-effort/1
         int rows = heights.size();
         int cols = heights[0].size();
         if (rows == 1 && cols == 1) return 0;
