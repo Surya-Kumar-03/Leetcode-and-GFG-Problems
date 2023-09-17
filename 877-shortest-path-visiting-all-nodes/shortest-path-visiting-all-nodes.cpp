@@ -1,7 +1,7 @@
 class Solution {
 public:
     int shortestPathLength(vector<vector<int>>& graph) {
-        // Check notes and your solution tab solution
+        // Check the solution tab solution, you posted
         
         int n = graph.size(); // number of nodes
         // say we have 4 nodes
