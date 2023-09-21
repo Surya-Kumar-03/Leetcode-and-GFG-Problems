@@ -1,23 +1,35 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-    int N1 = nums1.size();
-    int N2 = nums2.size();
-    if (N1 < N2) return findMedianSortedArrays(nums2, nums1);	// Make sure A2 is the shorter one.
-    int lo = 0, hi = N2 * 2;
-    while (lo <= hi) {
-        int mid2 = (lo + hi) / 2;   // Try Cut 2 
-        int mid1 = N1 + N2 - mid2;  // Calculate Cut 1 accordingly
+        if (nums1.size() > nums2.size()) {
+            return findMedianSortedArrays(nums2, nums1);
+        }
         
-        double L1 = (mid1 == 0) ? INT_MIN : nums1[(mid1-1)/2];	// Get L1, R1, L2, R2 respectively
-        double L2 = (mid2 == 0) ? INT_MIN : nums2[(mid2-1)/2];
-        double R1 = (mid1 == N1 * 2) ? INT_MAX : nums1[(mid1)/2];
-        double R2 = (mid2 == N2 * 2) ? INT_MAX : nums2[(mid2)/2];
+        int m = nums1.size(), n = nums2.size();
+        int left = 0, right = m;
         
-        if (L1 > R2) lo = mid2 + 1;		// A1's lower half is too big; need to move C1 left (C2 right)
-        else if (L2 > R1) hi = mid2 - 1;	// A2's lower half too big; need to move C2 left.
-        else return (max(L1,L2) + min(R1, R2)) / 2;	// Otherwise, that's the right cut.
+        while (left <= right) {
+            int partitionA = (left + right) / 2;
+            int partitionB = (m + n + 1) / 2 - partitionA;
+            
+            int maxLeftA = (partitionA == 0) ? INT_MIN : nums1[partitionA - 1];
+            int minRightA = (partitionA == m) ? INT_MAX : nums1[partitionA];
+            int maxLeftB = (partitionB == 0) ? INT_MIN : nums2[partitionB - 1];
+            int minRightB = (partitionB == n) ? INT_MAX : nums2[partitionB];
+            
+            if (maxLeftA <= minRightB && maxLeftB <= minRightA) {
+                if ((m + n) % 2 == 0) {
+                    return (max(maxLeftA, maxLeftB) + min(minRightA, minRightB)) / 2.0;
+                } else {
+                    return max(maxLeftA, maxLeftB);
+                }
+            } else if (maxLeftA > minRightB) {
+                right = partitionA - 1;
+            } else {
+                left = partitionA + 1;
+            }
+        }
+        
+        return 0.0;
     }
-    return -1;
-} 
 };
