@@ -1,9 +1,8 @@
 class Solution {
 public:
-
-    int maxiBreaker(int n, unordered_map<int,int>& memo) {
+    int maxiBreaker(int n, vector<int>& memo) {
         if (n <= 1) return 1;
-        if (memo.find(n) != memo.end()) return memo[n];
+        if (memo[n] != -1) return memo[n];
 
         int maxProduct = -1;
         for (int i = 1; i < n; i++) {
@@ -16,7 +15,7 @@ public:
     }
 
     int integerBreak(int n) {
-        unordered_map<int, int> memo;
+        vector<int> memo(n + 1, -1);
         return maxiBreaker(n, memo);
     }
 };
