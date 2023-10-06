@@ -6,12 +6,11 @@ public:
 
         int maxProduct = -1;
         for (int i = 1; i < n; i++) {
-            int product = max(i * (n - i), i * maxiBreaker(n - i, memo));
-            maxProduct = max(maxProduct, product);
+            int curProduct = max(i * (n - i), i * maxiBreaker(n - i, memo));
+            maxProduct = max(maxProduct, curProduct);
         }
 
-        memo[n] = maxProduct;
-        return maxProduct;
+        return memo[n] = maxProduct;
     }
 
     int integerBreak(int n) {
