@@ -16,7 +16,6 @@ public:
             int ele = m.get(mid);
             bool left = false;
             bool right = false;
-            printf("\ns is %d e is %d mid is %d", s, e, mid);
             if(mid - 1 < 0) {
                 left = true;
             } else if(m.get(mid - 1) < ele) {
@@ -28,7 +27,6 @@ public:
             } else if(m.get(mid + 1) < ele) {
                 right = true;
             }
-            printf("\n left is %d right is %d", left, right);
 
             if(left && right) return mid;
             else if(left) {
@@ -58,7 +56,7 @@ public:
     int findInMountainArray(int target, MountainArray &m) {
         int len = m.length();
         int mlead = getSplit(m, 0, len - 1, len);
-        cout << endl << mlead << endl;
+        
         // flag indicates if the array is sorted in asc or desc
         int firstHalf = binarySearch(0, mlead, target, m, true);
         if(firstHalf != -1) return firstHalf;
