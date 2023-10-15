@@ -1,39 +1,25 @@
 class Solution {
 public:
-    vector<vector<int>> memo;
-    int MOD = 1e9 + 7;
-    int arrLen;
-    
-    int dp(int curr, int remain) {
-        if (remain == 0) {
-            if (curr == 0) {
+    int MOD_VAL = 1e9 + 7;
+    int ways(int curI, int steps, int arrLen, vector<vector<int>>& memo) {
+        if(curI < 0 || curI >= arrLen) return 0;
+        if(steps == 0) {
+            if(curI == 0) {
                 return 1;
-            }
-            
-            return 0;
-        }
-        
-        if (memo[curr][remain] != -1) {
-            return memo[curr][remain];
+            } else return 0;
         }
 
-        int ans = dp(curr, remain - 1);
-        if (curr > 0) {
-            ans = (ans + dp(curr - 1, remain - 1)) % MOD;
-        }
-        
-        if (curr < arrLen - 1) {
-            ans = (ans + dp(curr + 1, remain - 1)) % MOD;
-        }
-        
-        memo[curr][remain] = ans;
-        return ans;
+        if(memo[curI][steps] != -1) return memo[curI][steps];
+
+        int ans = ways(curI, steps - 1, arrLen, memo) % MOD_VAL;
+        ans = (ans + ways(curI - 1, steps - 1, arrLen, memo)) % MOD_VAL;
+        ans = (ans + ways(curI + 1, steps - 1, arrLen, memo)) % MOD_VAL;
+        return memo[curI][steps] = ans;
     }
-    
+
     int numWays(int steps, int arrLen) {
-        arrLen = min(arrLen, steps);
-        this->arrLen = arrLen;
-        memo = vector(arrLen, vector(steps + 1, -1));
-        return dp(0, steps);
+        arrLen = min(arrLen, steps); // max possible moves we can make are steps
+        vector<vector<int>> memo(arrLen + 1, vector<int>(steps + 1, -1));
+        return ways(0, steps, arrLen, memo);
     }
 };
