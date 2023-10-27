@@ -1,29 +1,30 @@
 class Solution {
-private:
-    int lo = 0, maxLen = 0;
-
 public:
-    string longestPalindrome(string s) {
-        int len = s.length();
-        if (len < 2)
-            return s;
+    int maxLen = 0, start = 0;
 
-        for (int i = 0; i < len - 1; i++) {
-            extendPalindrome(s, i, i);    // assume odd length, try to extend Palindrome as possible
-            extendPalindrome(s, i, i + 1); // assume even length.
+    string longestPalindrome(string s) {
+        int n = s.size();
+        if(n < 2) return s;
+
+        for(int i = 0; i < n - 1; i++) {
+            expandCenter(s, i, i, n);
+            expandCenter(s, i, i + 1, n);
         }
-        return s.substr(lo, maxLen);
+
+        return s.substr(start, maxLen);
     }
 
-private:
-    void extendPalindrome(string s, int j, int k) {
-        while (j >= 0 && k < s.length() && s[j] == s[k]) {
-            j--;
-            k++;
+    void expandCenter(string s, int i, int j, int n) {
+        while(i >= 0 && j < n) {
+            if(s[i] != s[j]) break;
+            else {
+                i--, j++;
+            }
         }
-        if (maxLen < k - j - 1) {
-            lo = j + 1;
-            maxLen = k - j - 1;
+        
+        if(maxLen < j - i - 1) {
+            maxLen = j - i - 1;
+            start = i + 1;
         }
     }
 };
