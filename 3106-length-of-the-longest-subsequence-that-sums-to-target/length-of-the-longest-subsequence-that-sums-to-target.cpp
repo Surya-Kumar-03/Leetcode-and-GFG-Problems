@@ -5,7 +5,7 @@ public:
             return 0;  
         }
         if (target < 0 || i >= nums.size()) {
-            return -10000;
+            return INT_MIN;
         }
         
         if (memo[i][target] != -1) {
