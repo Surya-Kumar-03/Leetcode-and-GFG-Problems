@@ -1,28 +1,29 @@
 class Solution {
 public:
     int getWinner(vector<int>& arr, int k) {
-        int n = arr.size();
-        int maxEle = *max_element(arr.begin(), arr.end());
-        if (k >= n) {
-            return maxEle;
+        int maxElement = arr[0];
+        for (int i = 1; i < arr.size(); i++) {
+            maxElement = max(maxElement, arr[i]);
         }
-
-        int count = 0; 
-        int currentElement = arr[0];
-
-        for (int i = 1; i < n; i++) {
-            if (arr[i] > currentElement) {
-                currentElement = arr[i];
-                count = 1;
+        
+        int curr = arr[0];
+        int winstreak = 0;
+        
+        for (int i = 1; i < arr.size(); i++) {
+            int opponent = arr[i];
+            
+            if (curr > opponent) {
+                winstreak++;
             } else {
-                count++;
+                curr = opponent;
+                winstreak = 1;
             }
-
-            if (count == k) {
-                return currentElement;
+            
+            if (winstreak == k || curr == maxElement) {
+                return curr;
             }
         }
-
-        return maxEle;
+        
+        return -1;
     }
 };
