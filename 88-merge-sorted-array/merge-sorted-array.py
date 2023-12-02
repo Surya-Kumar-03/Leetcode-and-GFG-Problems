@@ -15,11 +15,12 @@ class Solution:
                 jPos = nums2[j]
             
             if iPos > jPos:
+                nums1[k] = nums1[i]
                 i -= 1
             else:
+                nums1[k] = nums2[j]
                 j -= 1
             
-            nums1[k] = max(iPos, jPos)
 
         
         
