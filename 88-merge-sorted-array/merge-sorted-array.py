@@ -7,12 +7,8 @@ class Solution:
         j = n - 1
 
         for k in range(len(nums1) - 1, -1, -1):
-            iPos = float('-inf')
-            jPos = float('-inf')
-            if i >= 0:
-                iPos = nums1[i]
-            if j >= 0:
-                jPos = nums2[j]
+            iPos = nums1[i] if i >= 0 else float('-inf')
+            jPos = nums2[j] if j >= 0 else float('-inf')
             
             if iPos > jPos:
                 nums1[k] = nums1[i]
