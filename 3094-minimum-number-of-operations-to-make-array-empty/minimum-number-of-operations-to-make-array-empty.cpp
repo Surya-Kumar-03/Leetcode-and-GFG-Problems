@@ -10,9 +10,7 @@ public:
         for(auto ele : freq) {
             int curFreq = ele.second;
             if(curFreq == 1) return -1;
-            ops += (curFreq / 3);
-            if(curFreq % 3 != 0)
-                ops++;
+            ops += ceil((double)curFreq/ 3);
         }
         return ops;
     }
