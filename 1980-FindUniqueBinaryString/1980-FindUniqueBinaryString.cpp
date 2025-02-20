@@ -22,13 +22,20 @@ public:
     }
 
     string findDifferentBinaryString(vector<string>& nums) {
-        unordered_set<string> numsSet(nums.begin(), nums.end());
-        string ans = "";
+        // unordered_set<string> numsSet(nums.begin(), nums.end());
+        // string ans = "";
         
-        if(binaryBacktracker(numsSet, ans)) {
-            return ans;
-        }
+        // if(binaryBacktracker(numsSet, ans)) {
+        //     return ans;
+        // }
 
-        return "";
+        // return "";
+
+        string ans = "";
+        int n = nums.size();
+        for(int i = 0; i < n; i++) {
+            ans += (nums[i][i] == '0' ? '1' : '0');
+        }
+        return ans;
     }
 };
