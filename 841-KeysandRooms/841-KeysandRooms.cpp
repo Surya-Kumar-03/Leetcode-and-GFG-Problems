@@ -1,36 +1,24 @@
-// Last updated: 7/7/2025, 8:30:02 AM
+// Last updated: 7/8/2025, 8:42:17 AM
 class Solution {
 public:
-    void bfs(vector<vector<int>>& adjList, vector<bool>& visited) {
-        queue<int> pendingNodes;
-        pendingNodes.push(0);
-        visited[0] = true;
+    void dfs(int source, vector<vector<int>>& adj, vector<bool>& visited) {
+        if (visited[source] == true) {
+            return;
+        }
 
-        while (!pendingNodes.empty()) {
-            int topNode = pendingNodes.front();
-            pendingNodes.pop();
-
-            for (int neighbour : adjList[topNode]) {
-                if (!visited[neighbour]) {
-                    pendingNodes.push(neighbour);
-                    visited[neighbour] = true;
-                }
+        visited[source] = true;
+        for (int neighbour : adj[source]) {
+            if (!visited[neighbour]) {
+                dfs(neighbour, adj, visited);
             }
         }
     }
 
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
         int nodes = rooms.size();
-        
-        vector<vector<int>> adjList(nodes, vector<int>());
-        for (int node = 0; node < nodes; node++) {
-            for (int neighbour : rooms[node]) {
-                adjList[node].push_back(neighbour);
-            }
-        }
-
         vector<bool> visited(nodes, false);
-        bfs(adjList, visited);
+        
+        dfs(0, rooms, visited);
 
         for (int node = 0; node < nodes; node++) {
             if (!visited[node]) {
