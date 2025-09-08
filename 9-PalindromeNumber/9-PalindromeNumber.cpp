@@ -1,10 +1,10 @@
-// Last updated: 9/8/2025, 8:56:45 AM
+// Last updated: 9/8/2025, 8:56:58 AM
 class Solution {
 public:
     bool isPalindrome(int x) {
         if (x < 0) return false; 
-        
-        long rev = 0, copy = abs(x);
+
+        long rev = 0, copy = x;
         while (copy > 0) {
             rev *= 10;
             rev += (copy % 10);
